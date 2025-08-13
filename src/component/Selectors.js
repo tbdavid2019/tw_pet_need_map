@@ -7,40 +7,92 @@ const Selectors = (props) => {
   console.log('🎛️ Selectors.js - 收容所選項:', option.shelter);
 
   const handleAnimalKindChange = (value) => {
+    const newStack = [...condition.stack];
+    
+    // 移除現有的 animalKind 條件
+    const index = newStack.indexOf("animalKind");
+    if (index > -1) {
+      newStack.splice(index, 1);
+    }
+    
+    // 如果不是全部，則添加條件
+    if (value !== "全部") {
+      newStack.push("animalKind");
+    }
+    
     const newCondition = {
       ...condition,
       animalKind: value,
-      stack: value === "全部" ? [] : ["animalKind"]
+      stack: newStack
     };
     setCondition(newCondition);
     if (setPageIndex) setPageIndex(0); // 重設頁面索引
   };
 
   const handleShelterChange = (value) => {
+    const newStack = [...condition.stack];
+    
+    // 移除現有的 shelter 條件
+    const index = newStack.indexOf("shelter");
+    if (index > -1) {
+      newStack.splice(index, 1);
+    }
+    
+    // 如果不是全部，則添加條件
+    if (value !== "全部") {
+      newStack.push("shelter");
+    }
+    
     const newCondition = {
       ...condition,
       shelter: value,
-      stack: value === "全部" ? [] : ["shelter"]
+      stack: newStack
     };
     setCondition(newCondition);
     if (setPageIndex) setPageIndex(0); // 重設頁面索引
   };
 
   const handleSexChange = (value) => {
+    const newStack = [...condition.stack];
+    
+    // 移除現有的 sex 條件
+    const index = newStack.indexOf("sex");
+    if (index > -1) {
+      newStack.splice(index, 1);
+    }
+    
+    // 如果不是全部，則添加條件
+    if (value !== "全部") {
+      newStack.push("sex");
+    }
+    
     const newCondition = {
       ...condition,
       sex: value,
-      stack: value === "全部" ? [] : ["sex"]
+      stack: newStack
     };
     setCondition(newCondition);
     if (setPageIndex) setPageIndex(0); // 重設頁面索引
   };
 
   const handleAgeChange = (value) => {
+    const newStack = [...condition.stack];
+    
+    // 移除現有的 age 條件
+    const index = newStack.indexOf("age");
+    if (index > -1) {
+      newStack.splice(index, 1);
+    }
+    
+    // 如果不是全部，則添加條件
+    if (value !== "全部") {
+      newStack.push("age");
+    }
+    
     const newCondition = {
       ...condition,
       age: value,
-      stack: value === "全部" ? [] : ["age"]
+      stack: newStack
     };
     setCondition(newCondition);
     if (setPageIndex) setPageIndex(0); // 重設頁面索引

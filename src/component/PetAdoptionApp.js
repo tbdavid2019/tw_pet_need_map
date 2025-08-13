@@ -160,59 +160,46 @@ const PetAdoptionApp = () => {
   const filteredData = useMemo(() => {
     const filteringData = (condition) => {
       let data = petsData;
-      let newData = [];
+      
       if (data === null || data === "loading") {
-        newData = data;
-      } else if (condition.stack.length === 1) {
-        if (condition.animalKind !== "全部") {
-          newData = data.filter(
-            (object) => object.animalKind === condition.animalKind
-          );
-        } else if (condition.shelter !== "全部") {
-          newData = data.filter(
-            (object) => object.shelterName === condition.shelter
-          );
-        } else if (condition.sex !== "全部") {
-          newData = data.filter(
-            (object) => object.sex === condition.sex
-          );
-        } else if (condition.age !== "全部") {
-          newData = data.filter(
-            (object) => object.age === condition.age
-          );
-        } else {
-          newData = data;
-        }
-      } else {
-        // 多重條件過濾
-        newData = data.filter((object) => {
-          let match = true;
-          
-          if (condition.animalKind !== "全部" && condition.stack.includes("animalKind")) {
-            match = match && object.animalKind === condition.animalKind;
-          }
-          
-          if (condition.shelter !== "全部" && condition.stack.includes("shelter")) {
-            match = match && object.shelterName === condition.shelter;
-          }
-          
-          if (condition.sex !== "全部" && condition.stack.includes("sex")) {
-            match = match && object.sex === condition.sex;
-          }
-          
-          if (condition.age !== "全部" && condition.stack.includes("age")) {
-            match = match && object.age === condition.age;
-          }
-          
-          return match;
-        });
+        return data;
       }
-
-      return newData;
+      
+      console.log('🔍 篩選條件:', condition);
+      console.log('📊 原始資料數量:', data.length);
+      
+      // 應用所有篩選條件
+      let filteredData = data.filter((object) => {
+        let match = true;
+        
+        // 動物種類篩選
+        if (condition.animalKind !== "全部") {
+          match = match && object.animalKind === condition.animalKind;
+        }
+        
+        // 收容所篩選
+        if (condition.shelter !== "全部") {
+          match = match && object.shelterName === condition.shelter;
+        }
+        
+        // 性別篩選
+        if (condition.sex !== "全部") {
+          match = match && object.sex === condition.sex;
+        }
+        
+        // 年齡篩選
+        if (condition.age !== "全部") {
+          match = match && object.age === condition.age;
+        }
+        
+        return match;
+      });
+      
+      console.log('📊 篩選後資料數量:', filteredData.length);
+      return filteredData;
     };
 
-    let newData = filteringData(condition);
-    return newData;
+    return filteringData(condition);
   }, [condition, petsData]);
 
   const selectorsOptions = useMemo(() => {

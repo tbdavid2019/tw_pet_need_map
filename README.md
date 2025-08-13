@@ -72,6 +72,9 @@ cp example.env .env
 # 啟動開發伺服器
 npm start
 ```
+```
+npm run build
+```
 
 ## 環境設定 Environment Setup
 

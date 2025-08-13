@@ -49,6 +49,7 @@ gh-pages/
 # API test scripts
 test-apis.js
 test-geocoding.js
+verify-coordinates.js
 
 # Sass cache
 .sass-cache/

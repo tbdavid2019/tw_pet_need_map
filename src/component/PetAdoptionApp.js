@@ -275,7 +275,7 @@ const PetAdoptionApp = () => {
           >
             <div style={{ padding: "16px", overflowY: "auto" }}>
               <Card
-                data={mapParameters.selectMarker}
+                value={mapParameters.selectMarker}
                 mapParameters={mapParameters}
                 setMapParameters={setMapParameters}
               />

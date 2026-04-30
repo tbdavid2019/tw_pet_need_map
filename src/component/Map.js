@@ -14,11 +14,9 @@ const Map = (props) => {
   const {
     constructionsData,
     mapParameters,
-    closeInfoBlock,
-    setMapParameters,
+        setMapParameters,
     isMobile,
-    makerMessage,
-    userLocation,
+        userLocation,
     setCondition,
   } = props;
   const mapRef = useRef(null);

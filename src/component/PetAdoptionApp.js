@@ -85,18 +85,7 @@ const PetAdoptionApp = () => {
     return bool;
   };
 
-  const convertDate2Num = (date) => {
-    let [year, month, day] = Object.values(date);
-    year = year.toString();
-    month = month.toString();
-    day = day.toString();
-
-    if (month.length === 1) month = "0" + month;
-    if (day.length === 1) day = "0" + day;
-
-    return parseInt(year + month + day, 10);
-  };
-
+  
   const sliceData = (data) => {
     let _data = data;
     let newData = [];

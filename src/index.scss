@@ -1075,6 +1075,8 @@ html,body{
     position: relative;
     margin: 0;
     width: 100%;
+        display: block !important;
+        visibility: visible !important;
     animation: none !important;
     transform: none !important;
   }
@@ -1085,7 +1087,13 @@ html,body{
     border-radius: 0;
     padding-top: 0;
   }
+    .cardsListContainer {
+        flex-grow: 0 !important;
+        height: auto !important;
+        overflow: visible !important;
+    }
   .cardsList {
+        position: static !important;
     height: auto !important;
     max-height: none !important;
     overflow-y: visible !important;

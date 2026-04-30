@@ -1069,33 +1069,33 @@ html,body{
 }
 
 // ==== MOBILE BOTTOM SHEET OVERRIDES ====
-[data-rsbs-root] {
-  z-index: 9999 !important;
-  .infoBlockContainer {
+[data-rsbs-root] .infoBlockContainer {
     position: relative;
     margin: 0;
     width: 100%;
-        display: block !important;
-        visibility: visible !important;
+    display: block !important;
+    visibility: visible !important;
     animation: none !important;
     transform: none !important;
-  }
-  .infoBlock {
+}
+
+[data-rsbs-root] .infoBlock {
     box-shadow: none !important;
     width: 100% !important;
     height: auto !important;
     border-radius: 0;
     padding-top: 0;
-  }
-    .cardsListContainer {
-        flex-grow: 0 !important;
-        height: auto !important;
-        overflow: visible !important;
-    }
-  .cardsList {
-        position: static !important;
+}
+
+[data-rsbs-root] .cardsListContainer {
+    flex-grow: 0 !important;
+    height: auto !important;
+    overflow: visible !important;
+}
+
+[data-rsbs-root] .cardsList {
+    position: static !important;
     height: auto !important;
     max-height: none !important;
     overflow-y: visible !important;
-  }
 }

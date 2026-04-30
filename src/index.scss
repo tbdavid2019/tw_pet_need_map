@@ -1067,3 +1067,27 @@ html,body{
 [data-rsbs-root] {
   z-index: 9999 !important;
 }
+
+// ==== MOBILE BOTTOM SHEET OVERRIDES ====
+[data-rsbs-root] {
+  z-index: 9999 !important;
+  .infoBlockContainer {
+    position: relative;
+    margin: 0;
+    width: 100%;
+    animation: none !important;
+    transform: none !important;
+  }
+  .infoBlock {
+    box-shadow: none !important;
+    width: 100% !important;
+    height: auto !important;
+    border-radius: 0;
+    padding-top: 0;
+  }
+  .cardsList {
+    height: auto !important;
+    max-height: none !important;
+    overflow-y: visible !important;
+  }
+}

@@ -270,41 +270,65 @@ const PetAdoptionApp = () => {
           mapParameters={mapParameters}
           setMapParameters={setMapParameters}
         />
-        <InfoBlock 
-          value="loading"
-          length={0}
-          option={selectorsOptions}
-          condition={condition}
-          mapParameters={mapParameters}
-          closeInfoBlock={closeInfoBlock}
-          isMobile={isMobile}
-          handleCloseClick={handleCloseClick}
-          setCondition={setCondition}
-          setMapParameters={setMapParameters}
-          isLoading={true}
-          constructionsData={null}
-        />
         <MakerMessage
           makerMessage={makerMessage}
           handleMakerMessageClick={handleMakerMessageClick}
         />
-        {isMobile && (
+        {isMobile ? (
           <BottomSheet 
-            open={!!mapParameters.selectMarker}
-            onDismiss={() => setMapParameters({ ...mapParameters, selectMarker: null })}
-            snapPoints={({ minHeight, maxHeight }) => [minHeight, maxHeight / 2, maxHeight * 0.8]}
+            open={true}
+            blocking={false}
+            expandOnContentDrag={true}
+            snapPoints={({ minHeight, maxHeight }) => [140, maxHeight / 2, maxHeight * 0.8]}
             defaultSnap={({ maxHeight }) => maxHeight / 2}
           >
-            <div style={{ padding: "16px", overflowY: "auto" }}>
-              {mapParameters.selectMarker && (
+            {(mapParameters.selectMarker && !mapParameters.closeInfoWindow) ? (
+              <div style={{ padding: "16px", overflowY: "auto" }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid #eee', marginBottom: '10px', paddingBottom: '10px' }}>
+                  <h3 style={{ margin: 0, fontSize: '18px' }}>寵物詳細資訊</h3>
+                  <button 
+                    onClick={() => setMapParameters({...mapParameters, selectMarker: null, closeInfoWindow: true})}
+                    style={{ background: 'none', border: 'none', fontSize: '24px', cursor: 'pointer', lineHeight: '1' }}
+                  >×</button>
+                </div>
                 <Card
                   value={mapParameters.selectMarker}
                   mapParameters={mapParameters}
                   setMapParameters={setMapParameters}
                 />
-              )}
-            </div>
+              </div>
+            ) : (
+              <InfoBlock 
+                        value="loading"
+                        length={0}
+                        option={selectorsOptions}
+                        condition={condition}
+                        mapParameters={mapParameters}
+                        closeInfoBlock={closeInfoBlock}
+                        isMobile={isMobile}
+                        handleCloseClick={handleCloseClick}
+                        setCondition={setCondition}
+                        setMapParameters={setMapParameters}
+                        isLoading={true}
+                        constructionsData={null}
+                      />
+            )}
           </BottomSheet>
+        ) : (
+          <InfoBlock 
+                    value="loading"
+                    length={0}
+                    option={selectorsOptions}
+                    condition={condition}
+                    mapParameters={mapParameters}
+                    closeInfoBlock={closeInfoBlock}
+                    isMobile={isMobile}
+                    handleCloseClick={handleCloseClick}
+                    setCondition={setCondition}
+                    setMapParameters={setMapParameters}
+                    isLoading={true}
+                    constructionsData={null}
+                  />
         )}
       </div>
     );
@@ -330,41 +354,65 @@ const PetAdoptionApp = () => {
           mapParameters={mapParameters}
           setMapParameters={setMapParameters}
         />
-        <InfoBlock 
-          value={null}
-          length={0}
-          option={selectorsOptions}
-          condition={condition}
-          mapParameters={mapParameters}
-          closeInfoBlock={closeInfoBlock}
-          isMobile={isMobile}
-          handleCloseClick={handleCloseClick}
-          setCondition={setCondition}
-          setMapParameters={setMapParameters}
-          isLoading={false}
-          constructionsData={null}
-        />
         <MakerMessage
           makerMessage={makerMessage}
           handleMakerMessageClick={handleMakerMessageClick}
         />
-        {isMobile && (
+        {isMobile ? (
           <BottomSheet 
-            open={!!mapParameters.selectMarker}
-            onDismiss={() => setMapParameters({ ...mapParameters, selectMarker: null })}
-            snapPoints={({ minHeight, maxHeight }) => [minHeight, maxHeight / 2, maxHeight * 0.8]}
+            open={true}
+            blocking={false}
+            expandOnContentDrag={true}
+            snapPoints={({ minHeight, maxHeight }) => [140, maxHeight / 2, maxHeight * 0.8]}
             defaultSnap={({ maxHeight }) => maxHeight / 2}
           >
-            <div style={{ padding: "16px", overflowY: "auto" }}>
-              {mapParameters.selectMarker && (
+            {(mapParameters.selectMarker && !mapParameters.closeInfoWindow) ? (
+              <div style={{ padding: "16px", overflowY: "auto" }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid #eee', marginBottom: '10px', paddingBottom: '10px' }}>
+                  <h3 style={{ margin: 0, fontSize: '18px' }}>寵物詳細資訊</h3>
+                  <button 
+                    onClick={() => setMapParameters({...mapParameters, selectMarker: null, closeInfoWindow: true})}
+                    style={{ background: 'none', border: 'none', fontSize: '24px', cursor: 'pointer', lineHeight: '1' }}
+                  >×</button>
+                </div>
                 <Card
                   value={mapParameters.selectMarker}
                   mapParameters={mapParameters}
                   setMapParameters={setMapParameters}
                 />
-              )}
-            </div>
+              </div>
+            ) : (
+              <InfoBlock 
+                        value={null}
+                        length={0}
+                        option={selectorsOptions}
+                        condition={condition}
+                        mapParameters={mapParameters}
+                        closeInfoBlock={closeInfoBlock}
+                        isMobile={isMobile}
+                        handleCloseClick={handleCloseClick}
+                        setCondition={setCondition}
+                        setMapParameters={setMapParameters}
+                        isLoading={false}
+                        constructionsData={null}
+                      />
+            )}
           </BottomSheet>
+        ) : (
+          <InfoBlock 
+                    value={null}
+                    length={0}
+                    option={selectorsOptions}
+                    condition={condition}
+                    mapParameters={mapParameters}
+                    closeInfoBlock={closeInfoBlock}
+                    isMobile={isMobile}
+                    handleCloseClick={handleCloseClick}
+                    setCondition={setCondition}
+                    setMapParameters={setMapParameters}
+                    isLoading={false}
+                    constructionsData={null}
+                  />
         )}
       </div>
     );
@@ -404,40 +452,63 @@ const PetAdoptionApp = () => {
           mapParameters={mapParameters}
           setMapParameters={setMapParameters}
         />
-        <InfoBlock
-          value={sliceData(listData)}  // 清單使用篩選資料
-          length={listData.length}
-          option={selectorsOptions}
-          condition={condition}
-          mapParameters={mapParameters}
-          closeInfoBlock={closeInfoBlock}
-          isMobile={isMobile}
-          handleCloseClick={handleCloseClick}
-          setCondition={setCondition}
-          setMapParameters={setMapParameters}
-          constructionsData={petsData}
-        />
         <MakerMessage
           makerMessage={makerMessage}
           handleMakerMessageClick={handleMakerMessageClick}
         />
-        {isMobile && (
+        {isMobile ? (
           <BottomSheet 
-            open={!!mapParameters.selectMarker}
-            onDismiss={() => setMapParameters({ ...mapParameters, selectMarker: null })}
-            snapPoints={({ minHeight, maxHeight }) => [minHeight, maxHeight / 2, maxHeight * 0.8]}
+            open={true}
+            blocking={false}
+            expandOnContentDrag={true}
+            snapPoints={({ minHeight, maxHeight }) => [140, maxHeight / 2, maxHeight * 0.8]}
             defaultSnap={({ maxHeight }) => maxHeight / 2}
           >
-            <div style={{ padding: "16px", overflowY: "auto" }}>
-              {mapParameters.selectMarker && (
+            {(mapParameters.selectMarker && !mapParameters.closeInfoWindow) ? (
+              <div style={{ padding: "16px", overflowY: "auto" }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid #eee', marginBottom: '10px', paddingBottom: '10px' }}>
+                  <h3 style={{ margin: 0, fontSize: '18px' }}>寵物詳細資訊</h3>
+                  <button 
+                    onClick={() => setMapParameters({...mapParameters, selectMarker: null, closeInfoWindow: true})}
+                    style={{ background: 'none', border: 'none', fontSize: '24px', cursor: 'pointer', lineHeight: '1' }}
+                  >×</button>
+                </div>
                 <Card
                   value={mapParameters.selectMarker}
                   mapParameters={mapParameters}
                   setMapParameters={setMapParameters}
                 />
-              )}
-            </div>
+              </div>
+            ) : (
+              <InfoBlock
+                        value={sliceData(listData)}  // 清單使用篩選資料
+                        length={listData.length}
+                        option={selectorsOptions}
+                        condition={condition}
+                        mapParameters={mapParameters}
+                        closeInfoBlock={closeInfoBlock}
+                        isMobile={isMobile}
+                        handleCloseClick={handleCloseClick}
+                        setCondition={setCondition}
+                        setMapParameters={setMapParameters}
+                        constructionsData={petsData}
+                      />
+            )}
           </BottomSheet>
+        ) : (
+          <InfoBlock
+                    value={sliceData(listData)}  // 清單使用篩選資料
+                    length={listData.length}
+                    option={selectorsOptions}
+                    condition={condition}
+                    mapParameters={mapParameters}
+                    closeInfoBlock={closeInfoBlock}
+                    isMobile={isMobile}
+                    handleCloseClick={handleCloseClick}
+                    setCondition={setCondition}
+                    setMapParameters={setMapParameters}
+                    constructionsData={petsData}
+                  />
         )}
       </div>
     );

@@ -44,10 +44,12 @@ const InfoBlock = (props)=>{
             return(arr);
     },[props.value, pageIndex]);
 
-    // Force pageIndex correction during render if out of bounds (React will batch this)
-    if (props.value && props.value !== 'loading' && pageIndex >= props.value.length && props.value.length > 0) {
-        setPageIndex(0);
-    }
+    // Force pageIndex correction if out of bounds
+    useEffect(() => {
+        if (props.value && props.value !== 'loading' && pageIndex >= props.value.length && props.value.length > 0) {
+            setPageIndex(0);
+        }
+    }, [props.value, pageIndex]);
 
     const handlePaginationClick = (x)=>{
         if(x > (props.value.length - 1) || x < 0) return;

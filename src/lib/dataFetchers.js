@@ -141,13 +141,21 @@ export const simpleFetch = async (url, retries = 2) => {
   const fetchWithRetry = async (u, attempt = 1) => {
     try {
       console.log(`📥 嘗試第 ${attempt} 次抓取: ${u}`);
-      const res = await fetch(u, { 
-        method: 'GET',
-        mode: 'cors',
-        headers: {
-          'Accept': 'application/json'
-        }
-      });
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 15000);
+      let res;
+      try {
+        res = await fetch(u, { 
+          method: 'GET',
+          mode: 'cors',
+          headers: {
+            'Accept': 'application/json'
+          },
+          signal: controller.signal
+        });
+      } finally {
+        clearTimeout(timeoutId);
+      }
       console.log(`📥 收到回應 ${u}:`, res.status, res.statusText);
       if (!res.ok) {
         throw new Error(`HTTP error! status: ${res.status}`);
@@ -184,10 +192,18 @@ export const fetchTaipeiData = async (url) => {
   
   try {
     // 先嘗試直接 fetch
-    const response = await fetch(url, {
-      method: 'GET',
-      mode: 'cors'
-    });
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 15000);
+    let response;
+    try {
+      response = await fetch(url, {
+        method: 'GET',
+        mode: 'cors',
+        signal: controller.signal
+      });
+    } finally {
+      clearTimeout(timeoutId);
+    }
     
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);

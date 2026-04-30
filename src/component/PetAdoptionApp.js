@@ -266,22 +266,6 @@ const PetAdoptionApp = () => {
           makerMessage={makerMessage}
           handleCloseClick={handleCloseClick}
           handleMakerMessageClick={handleMakerMessageClick}
-        />
-        {isMobile && mapParameters.selectMarker && (
-          <BottomSheet 
-            open={!!mapParameters.selectMarker}
-            onDismiss={() => setMapParameters({ ...mapParameters, selectMarker: null })}
-            snapPoints={({ minHeight, maxHeight }) => [minHeight, maxHeight / 2, maxHeight * 0.8]}
-          >
-            <div style={{ padding: "16px", overflowY: "auto" }}>
-              <Card
-                value={mapParameters.selectMarker}
-                mapParameters={mapParameters}
-                setMapParameters={setMapParameters}
-              />
-            </div>
-          </BottomSheet>
-        )}
           userLocation={userLocation}
           mapParameters={mapParameters}
           setMapParameters={setMapParameters}
@@ -312,14 +296,13 @@ const PetAdoptionApp = () => {
           >
             <div style={{ padding: "16px", overflowY: "auto" }}>
               <Card
-                data={mapParameters.selectMarker}
+                value={mapParameters.selectMarker}
                 mapParameters={mapParameters}
                 setMapParameters={setMapParameters}
               />
             </div>
           </BottomSheet>
         )}
-        />
       </div>
     );
   } else if (petsData === null) {
@@ -340,22 +323,6 @@ const PetAdoptionApp = () => {
           makerMessage={makerMessage}
           handleCloseClick={handleCloseClick}
           handleMakerMessageClick={handleMakerMessageClick}
-        />
-        {isMobile && mapParameters.selectMarker && (
-          <BottomSheet 
-            open={!!mapParameters.selectMarker}
-            onDismiss={() => setMapParameters({ ...mapParameters, selectMarker: null })}
-            snapPoints={({ minHeight, maxHeight }) => [minHeight, maxHeight / 2, maxHeight * 0.8]}
-          >
-            <div style={{ padding: "16px", overflowY: "auto" }}>
-              <Card
-                data={mapParameters.selectMarker}
-                mapParameters={mapParameters}
-                setMapParameters={setMapParameters}
-              />
-            </div>
-          </BottomSheet>
-        )}
           userLocation={userLocation}
           mapParameters={mapParameters}
           setMapParameters={setMapParameters}
@@ -386,14 +353,13 @@ const PetAdoptionApp = () => {
           >
             <div style={{ padding: "16px", overflowY: "auto" }}>
               <Card
-                data={mapParameters.selectMarker}
+                value={mapParameters.selectMarker}
                 mapParameters={mapParameters}
                 setMapParameters={setMapParameters}
               />
             </div>
           </BottomSheet>
         )}
-        />
       </div>
     );
   } else {
@@ -428,22 +394,6 @@ const PetAdoptionApp = () => {
           makerMessage={makerMessage}
           handleCloseClick={handleCloseClick}
           handleMakerMessageClick={handleMakerMessageClick}
-        />
-        {isMobile && mapParameters.selectMarker && (
-          <BottomSheet 
-            open={!!mapParameters.selectMarker}
-            onDismiss={() => setMapParameters({ ...mapParameters, selectMarker: null })}
-            snapPoints={({ minHeight, maxHeight }) => [minHeight, maxHeight / 2, maxHeight * 0.8]}
-          >
-            <div style={{ padding: "16px", overflowY: "auto" }}>
-              <Card
-                data={mapParameters.selectMarker}
-                mapParameters={mapParameters}
-                setMapParameters={setMapParameters}
-              />
-            </div>
-          </BottomSheet>
-        )}
           userLocation={userLocation}
           mapParameters={mapParameters}
           setMapParameters={setMapParameters}
@@ -473,14 +423,13 @@ const PetAdoptionApp = () => {
           >
             <div style={{ padding: "16px", overflowY: "auto" }}>
               <Card
-                data={mapParameters.selectMarker}
+                value={mapParameters.selectMarker}
                 mapParameters={mapParameters}
                 setMapParameters={setMapParameters}
               />
             </div>
           </BottomSheet>
         )}
-        />
       </div>
     );
   }

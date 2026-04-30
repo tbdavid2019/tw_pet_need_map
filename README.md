@@ -57,10 +57,10 @@ This project integrates open data from the Ministry of Agriculture's Animal Prot
 
 ```bash
 # 複製專案
-git clone https://github.com/tbdavid2019/tw_pet_adoption_map.git
+git clone https://github.com/tbdavid2019/tw_pet_need_map.git
 
 # 進入目錄
-cd tw_pet_adoption_map
+cd tw_pet_need_map
 
 # 安裝依賴
 npm install
@@ -72,9 +72,22 @@ cp example.env .env
 # 啟動開發伺服器
 npm start
 ```
-```
+
+```bash
 npm run build
 ```
+
+## 部署 Deployment
+
+本專案使用 GitHub Pages 部署，`package.json` 已設定 `homepage` 與 deploy script。
+
+```bash
+npm run deploy
+```
+
+正式站網址：
+
+- https://tbdavid2019.github.io/tw_pet_need_map/
 
 ## 環境設定 Environment Setup
 
@@ -83,6 +96,23 @@ npm run build
 ```env
 REACT_APP_GOOGLE_MAP_API_KEY=your_google_maps_api_key_here
 ```
+
+## 最近修正與踩坑紀錄 Recent Fixes And Pitfalls
+
+2026-04-30 這一輪修正主要集中在手機版 BottomSheet 與桌機版 marker/cluster 行為：
+
+- 手機版資訊卡一度是白畫面，但根因不是資料或圖片沒載入，而是 BottomSheet 內沿用了桌機的 `closeInfoBlock` 狀態，導致內容被 `.infoBlockContainer.hide` 隱藏。
+- 手機版卡片列表曾因 `.cardsListContainer` 高度被算成 `0px`、`.cardsList` 又維持 `position: absolute`，造成卡片與圖片都在 DOM 裡卻看不到。
+- 桌機版個別 marker 點擊曾錯把地圖中心設為目前地圖中心，而不是動物座標，導致資訊正確但地圖位置錯誤。
+- 群聚點擊與個別 marker 點擊現在分開處理：群聚只切收容所篩選，個別 marker 才會切詳細資訊與重新定位地圖。
+
+若之後再調整手機版 BottomSheet，請優先檢查：
+
+- `InfoBlock` 是否仍然套到桌機的 `hide/open/close` 狀態。
+- BottomSheet 內 `.cardsListContainer` / `.cardsList` 的高度與定位是否仍沿用桌機版設定。
+- build 後的 CSS 是否真的包含你預期的 selector，不要只看 SCSS 原始碼。
+
+更完整的修正紀錄請見 [CHANGELOG.md](./CHANGELOG.md).
 
 
 

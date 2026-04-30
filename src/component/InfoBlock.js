@@ -61,6 +61,7 @@ const InfoBlock = (props)=>{
         else if(condition === false) state = 'open';
         return state;
     }
+    const containerState = isMobile ? 'open' : getCSSState(closeInfoBlock);
 
     if(props.value === 'loading' && props.isLoading){
         return(
@@ -133,7 +134,7 @@ const InfoBlock = (props)=>{
     }
     else if(props.length === 0){
         return(
-            <div className={`infoBlockContainer ${getCSSState(closeInfoBlock)}`}>
+            <div className={`infoBlockContainer ${containerState}`}>
             <div className='infoBlock'>
                 <CloseButton handleCloseClick={handleCloseClick}/>
                 <div className='toolbarContainer'>
@@ -161,7 +162,7 @@ const InfoBlock = (props)=>{
     else{
         let pageBtns = Array.from({length: props.value.length},(_,index)=>index);
         return(
-            <div className={`infoBlockContainer ${getCSSState(closeInfoBlock)}`}>
+            <div className={`infoBlockContainer ${containerState}`}>
             {/* <div className={`infoBlockContainer ${closeInfoBlock ? 'close':'open'}`}> */}
             <div className='infoBlock'>
                 <CloseButton handleCloseClick={handleCloseClick}

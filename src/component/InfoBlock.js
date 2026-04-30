@@ -59,7 +59,7 @@ const InfoBlock = (props)=>{
         return(
             <div className={`infoBlockContainer`}>
             <div className='infoBlock' style={{paddingTop:'0', backgroundColor:'#ececec'}}>
-                <div className='loading'>
+                <div className='loading' style={{ width: '100%', lineHeight: '1.5', margin: 'auto', paddingTop: '100px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     <i className="fas fa-circle-notch fa-lg" style={{
                         animation: 'spin 2s linear infinite',
                         color: '#3498db'

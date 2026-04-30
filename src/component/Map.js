@@ -137,37 +137,6 @@ const Map = (props) => {
           averageCenter={true}
           options={clustersOptions}
           gridSize={gridSize}
-          onClick={(cluster) => {
-            console.log('🔗 Cluster clicked!', cluster);
-            const markers = cluster.getMarkers();
-            if (markers.length > 0) {
-              const firstMarkerIndex = markers[0].get('markerId');
-              if (firstMarkerIndex !== undefined) {
-                // Let's reuse handleMarkerClick so it zooms properly, sets the filter, AND opens the BottomSheet Card!
-                // We don't call handleMarkerClick because we want to see the list of all pets in the cluster, not just the first one!
-                let data = constructionsData[Math.floor(firstMarkerIndex / 10)][firstMarkerIndex % 10];
-                let newCenter = mapRef.current.getCenter().toJSON();
-                // Set condition to filter the list
-                if (setCondition && data) {
-                  setCondition({
-                    animalKind: "全部",
-                    shelter: data.shelterName,
-                    sex: "全部", 
-                    age: "全部",
-                    stack: ["shelter"],
-                  });
-                }
-                // Zoom but do NOT set selectMarker, so BottomSheet shows the InfoBlock list!
-                setMapParameters({
-                  center: newCenter,
-                  polygon: data.coordinate ? data.coordinate.polygon : null,
-                  zoom: mapRef.current.zoom <= 10 ? 12 : mapRef.current.zoom + 2, // Zoom in
-                  selectMarker: null, 
-                  closeInfoWindow: true,
-                });
-              }
-            }
-          }}
         >
           {(cluster) => renderMarker(cluster)}
         </MarkerClusterer>

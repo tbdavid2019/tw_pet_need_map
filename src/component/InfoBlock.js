@@ -32,9 +32,9 @@ const InfoBlock = (props)=>{
             let arr = [];
             let length = 0;
 
-            if(props.value === null) return;
-            else if(props.value.length > 1) length =  props.value[pageIndex].length;
-            else if(props.value.length === 1) length =  props.value[0].length;
+                        if(!props.value || props.value === null || props.value === 'loading') return [];
+            const safeIndex = pageIndex >= props.value.length ? 0 : pageIndex;
+            if(props.value.length > 0) length = props.value[safeIndex].length;
             else length = 0;
 
             arr = Array.from({length: length},(_,index) => index);
@@ -182,7 +182,7 @@ const InfoBlock = (props)=>{
                     {
                         cardsNum.map((i)=>(
                             <Card key={'card'+(pageIndex*10+i+1)}
-                                value={props.value[pageIndex][i]}
+                                value={(props.value && props.value[pageIndex >= props.value.length ? 0 : pageIndex]) ? props.value[pageIndex >= props.value.length ? 0 : pageIndex][i] : null}
                                 setMapParameters={props.setMapParameters}
                             />
                         ))

@@ -56,28 +56,16 @@ const Map = (props) => {
 
   const renderCluster = useMemo(() => {
     const handleMarkerClick = (i) => {
-      // center = mapRef.current.center;
       let data = constructionsData[Math.floor(i / 10)][i % 10];
-      let newCenter = mapRef.current.getCenter().toJSON();
-
-      // 設定過濾條件為選中的收容所
-      if (setCondition) {
-        const newCondition = {
-          animalKind: "全部",
-          shelter: data.shelterName,
-          sex: "全部", 
-          age: "全部",
-          stack: ["shelter"],
-        };
-        console.log('🗺️ Map.js - 設定新的過濾條件:', newCondition);
-        console.log('🗺️ Map.js - 選中的收容所:', data.shelterName);
-        setCondition(newCondition);
-      }
+      let newCenter = {
+        lat: Number(data.coordinate.lat),
+        lng: Number(data.coordinate.lng),
+      };
 
       setMapParameters({
         center: newCenter,
         polygon: data.coordinate.polygon,
-        zoom: mapParameters.zoom,
+        zoom: mapParameters.zoom < 17 ? 17 : mapParameters.zoom,
         selectMarker: data,
         closeInfoWindow: false,
       });

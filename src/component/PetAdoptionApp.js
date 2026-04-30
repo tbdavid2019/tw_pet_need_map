@@ -288,18 +288,21 @@ const PetAdoptionApp = () => {
           makerMessage={makerMessage}
           handleMakerMessageClick={handleMakerMessageClick}
         />
-        {isMobile && mapParameters.selectMarker && (
+        {isMobile && (
           <BottomSheet 
             open={!!mapParameters.selectMarker}
             onDismiss={() => setMapParameters({ ...mapParameters, selectMarker: null })}
             snapPoints={({ minHeight, maxHeight }) => [minHeight, maxHeight / 2, maxHeight * 0.8]}
+            defaultSnap={({ maxHeight }) => maxHeight / 2}
           >
             <div style={{ padding: "16px", overflowY: "auto" }}>
-              <Card
-                value={mapParameters.selectMarker}
-                mapParameters={mapParameters}
-                setMapParameters={setMapParameters}
-              />
+              {mapParameters.selectMarker && (
+                <Card
+                  value={mapParameters.selectMarker}
+                  mapParameters={mapParameters}
+                  setMapParameters={setMapParameters}
+                />
+              )}
             </div>
           </BottomSheet>
         )}
@@ -345,18 +348,21 @@ const PetAdoptionApp = () => {
           makerMessage={makerMessage}
           handleMakerMessageClick={handleMakerMessageClick}
         />
-        {isMobile && mapParameters.selectMarker && (
+        {isMobile && (
           <BottomSheet 
             open={!!mapParameters.selectMarker}
             onDismiss={() => setMapParameters({ ...mapParameters, selectMarker: null })}
             snapPoints={({ minHeight, maxHeight }) => [minHeight, maxHeight / 2, maxHeight * 0.8]}
+            defaultSnap={({ maxHeight }) => maxHeight / 2}
           >
             <div style={{ padding: "16px", overflowY: "auto" }}>
-              <Card
-                value={mapParameters.selectMarker}
-                mapParameters={mapParameters}
-                setMapParameters={setMapParameters}
-              />
+              {mapParameters.selectMarker && (
+                <Card
+                  value={mapParameters.selectMarker}
+                  mapParameters={mapParameters}
+                  setMapParameters={setMapParameters}
+                />
+              )}
             </div>
           </BottomSheet>
         )}
@@ -415,18 +421,21 @@ const PetAdoptionApp = () => {
           makerMessage={makerMessage}
           handleMakerMessageClick={handleMakerMessageClick}
         />
-        {isMobile && mapParameters.selectMarker && (
+        {isMobile && (
           <BottomSheet 
             open={!!mapParameters.selectMarker}
             onDismiss={() => setMapParameters({ ...mapParameters, selectMarker: null })}
             snapPoints={({ minHeight, maxHeight }) => [minHeight, maxHeight / 2, maxHeight * 0.8]}
+            defaultSnap={({ maxHeight }) => maxHeight / 2}
           >
             <div style={{ padding: "16px", overflowY: "auto" }}>
-              <Card
-                value={mapParameters.selectMarker}
-                mapParameters={mapParameters}
-                setMapParameters={setMapParameters}
-              />
+              {mapParameters.selectMarker && (
+                <Card
+                  value={mapParameters.selectMarker}
+                  mapParameters={mapParameters}
+                  setMapParameters={setMapParameters}
+                />
+              )}
             </div>
           </BottomSheet>
         )}

@@ -141,30 +141,32 @@ const Map = (props) => {
           gridSize={gridSize}
           onClick={(cluster) => {
             console.log('🔗 Cluster clicked!', cluster);
-            console.log('🔗 Cluster size:', cluster.getSize());
             const markers = cluster.getMarkers();
             if (markers.length > 0) {
-              console.log('🔗 First marker in cluster:', markers[0]);
-              
-              // 獲取聚合中第一個標記的數據
               const firstMarkerIndex = markers[0].get('markerId');
               if (firstMarkerIndex !== undefined) {
-                console.log('🔗 Processing cluster click with marker index:', firstMarkerIndex);
+                // Let's reuse handleMarkerClick so it zooms properly, sets the filter, AND opens the BottomSheet Card!
+                // We don't call handleMarkerClick because we want to see the list of all pets in the cluster, not just the first one!
                 let data = constructionsData[Math.floor(firstMarkerIndex / 10)][firstMarkerIndex % 10];
-                
-                // 設定過濾條件為選中的收容所
+                let newCenter = mapRef.current.getCenter().toJSON();
+                // Set condition to filter the list
                 if (setCondition && data) {
-                  const newCondition = {
+                  setCondition({
                     animalKind: "全部",
                     shelter: data.shelterName,
                     sex: "全部", 
                     age: "全部",
                     stack: ["shelter"],
-                  };
-                  console.log('🔗 Cluster - 設定新的過濾條件:', newCondition);
-                  console.log('🔗 Cluster - 選中的收容所:', data.shelterName);
-                  setCondition(newCondition);
+                  });
                 }
+                // Zoom but do NOT set selectMarker, so BottomSheet shows the InfoBlock list!
+                setMapParameters({
+                  center: newCenter,
+                  polygon: data.coordinate ? data.coordinate.polygon : null,
+                  zoom: mapRef.current.zoom <= 10 ? 12 : mapRef.current.zoom + 2, // Zoom in
+                  selectMarker: null, 
+                  closeInfoWindow: true,
+                });
               }
             }
           }}

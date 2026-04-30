@@ -178,7 +178,8 @@ const InfoBlock = (props)=>{
                         handlePaginationClick={handlePaginationClick}
                         isMobile={isMobile}
                     />
-                    <div id='topAnchor' style={{marginBottom:'2em'}}/>
+                    <div id='topAnchor' style={{marginBottom:'0.5em'}}/>
+                    <div className="cards-slider">
                     {
                         cardsNum.map((i)=>(
                             <Card key={'card'+(pageIndex*10+i+1)}
@@ -187,6 +188,7 @@ const InfoBlock = (props)=>{
                             />
                         ))
                     }
+                    </div>
                     <Pagination
                         pageBtns={pageBtns}
                         pageIndex={pageIndex}

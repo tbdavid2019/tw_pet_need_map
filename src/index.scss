@@ -1089,40 +1089,5 @@ html,body{
     height: auto !important;
     max-height: none !important;
     overflow-y: visible !important;
-    
-
-}
-
-  .cards-slider {
-    // Normal desktop
-  }
-  
-  [data-rsbs-root] {
-    .cards-slider {
-      display: flex !important;
-      flex-wrap: nowrap !important;
-      overflow-x: auto !important;
-      -webkit-overflow-scrolling: touch;
-      scroll-snap-type: x mandatory;
-      gap: 15px;
-      padding-bottom: 20px !important;
-      align-items: stretch;
-      
-      &::-webkit-scrollbar {
-        display: none; // Safari/Chrome
-      }
-      scrollbar-width: none; // Firefox
-    }
-    
-    .cards-slider .card {
-      min-width: 85vw !important;
-      scroll-snap-align: center;
-      flex-shrink: 0;
-      margin-bottom: 0 !important; // override any bottom gap in vertical
-    }
-    
-    .pagination {
-      margin-top: 15px;
-    }
   }
 }

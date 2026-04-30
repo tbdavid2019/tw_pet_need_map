@@ -32,24 +32,14 @@ const InfoBlock = (props)=>{
             let arr = [];
             let length = 0;
 
-            if(props.value === null || !props.value) return [];
-            
-            // Safe fallback if pageIndex is out of bounds
-            const safePageIndex = pageIndex >= props.value.length ? 0 : pageIndex;
-            
-            if(props.value.length > 0) length = props.value[safePageIndex].length;
+            if(props.value === null) return;
+            else if(props.value.length > 1) length =  props.value[pageIndex].length;
+            else if(props.value.length === 1) length =  props.value[0].length;
             else length = 0;
 
             arr = Array.from({length: length},(_,index) => index);
             return(arr);
     },[props.value, pageIndex]);
-
-    // Force pageIndex correction if out of bounds
-    useEffect(() => {
-        if (props.value && props.value !== 'loading' && pageIndex >= props.value.length && props.value.length > 0) {
-            setPageIndex(0);
-        }
-    }, [props.value, pageIndex]);
 
     const handlePaginationClick = (x)=>{
         if(x > (props.value.length - 1) || x < 0) return;
@@ -188,17 +178,15 @@ const InfoBlock = (props)=>{
                         handlePaginationClick={handlePaginationClick}
                         isMobile={isMobile}
                     />
-                    <div id='topAnchor' style={{marginBottom:'0.5em'}}/>
-                    <div className="cards-slider">
+                    <div id='topAnchor' style={{marginBottom:'2em'}}/>
                     {
                         cardsNum.map((i)=>(
                             <Card key={'card'+(pageIndex*10+i+1)}
-                                value={props.value[pageIndex] && props.value[pageIndex][i] ? props.value[pageIndex][i] : props.value[0][i]}
+                                value={props.value[pageIndex][i]}
                                 setMapParameters={props.setMapParameters}
                             />
                         ))
                     }
-                    </div>
                     <Pagination
                         pageBtns={pageBtns}
                         pageIndex={pageIndex}

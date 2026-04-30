@@ -14,9 +14,9 @@ const Map = (props) => {
   const {
     constructionsData,
     mapParameters,
-        setMapParameters,
+    setMapParameters,
     isMobile,
-        userLocation,
+    userLocation,
     setCondition,
   } = props;
   const mapRef = useRef(null);
@@ -137,6 +137,34 @@ const Map = (props) => {
           averageCenter={true}
           options={clustersOptions}
           gridSize={gridSize}
+          onClick={(cluster) => {
+            console.log('🔗 Cluster clicked!', cluster);
+            console.log('🔗 Cluster size:', cluster.getSize());
+            const markers = cluster.getMarkers();
+            if (markers.length > 0) {
+              console.log('🔗 First marker in cluster:', markers[0]);
+
+              const firstMarkerIndex = markers[0].get('markerId');
+              if (firstMarkerIndex !== undefined) {
+                console.log('🔗 Processing cluster click with marker index:', firstMarkerIndex);
+                let data = constructionsData[Math.floor(firstMarkerIndex / 10)][firstMarkerIndex % 10];
+
+                // 手機版點擊群聚時只切換清單篩選，不要改地圖中心或選中的卡片。
+                if (setCondition && data) {
+                  const newCondition = {
+                    animalKind: "全部",
+                    shelter: data.shelterName,
+                    sex: "全部",
+                    age: "全部",
+                    stack: ["shelter"],
+                  };
+                  console.log('🔗 Cluster - 設定新的過濾條件:', newCondition);
+                  console.log('🔗 Cluster - 選中的收容所:', data.shelterName);
+                  setCondition(newCondition);
+                }
+              }
+            }
+          }}
         >
           {(cluster) => renderMarker(cluster)}
         </MarkerClusterer>

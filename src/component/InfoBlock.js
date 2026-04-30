@@ -32,7 +32,7 @@ const InfoBlock = (props)=>{
             let arr = [];
             let length = 0;
 
-                        if(!props.value || props.value === null || props.value === 'loading') return [];
+            if(!props.value || props.value === null || props.value === 'loading') return [];
             const safeIndex = pageIndex >= props.value.length ? 0 : pageIndex;
             if(props.value.length > 0) length = props.value[safeIndex].length;
             else length = 0;
@@ -40,6 +40,13 @@ const InfoBlock = (props)=>{
             arr = Array.from({length: length},(_,index) => index);
             return(arr);
     },[props.value, pageIndex]);
+
+    useEffect(() => {
+        if (!props.value || props.value === null || props.value === 'loading') return;
+        if (pageIndex >= props.value.length) {
+            setPageIndex(0);
+        }
+    }, [props.value, pageIndex]);
 
     const handlePaginationClick = (x)=>{
         if(x > (props.value.length - 1) || x < 0) return;
@@ -181,10 +188,16 @@ const InfoBlock = (props)=>{
                     <div id='topAnchor' style={{marginBottom:'2em'}}/>
                     {
                         cardsNum.map((i)=>(
+                            (() => {
+                                const safeIndex = pageIndex >= props.value.length ? 0 : pageIndex;
+                                const cardValue = props.value[safeIndex]?.[i] || null;
+                                return (
                             <Card key={'card'+(pageIndex*10+i+1)}
-                                value={(props.value && props.value[pageIndex >= props.value.length ? 0 : pageIndex]) ? props.value[pageIndex >= props.value.length ? 0 : pageIndex][i] : null}
+                                value={cardValue}
                                 setMapParameters={props.setMapParameters}
                             />
+                                );
+                            })()
                         ))
                     }
                     <Pagination

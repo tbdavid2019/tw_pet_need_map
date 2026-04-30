@@ -1358,3 +1358,10 @@ html, body {
 }
 
 /*# sourceMappingURL=index.css.map */
+
+
+/* Bottom Sheet Overrides */
+[data-rsbs-root] {
+  z-index: 9999 !important;
+}
+

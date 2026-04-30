@@ -1064,3 +1064,6 @@ html,body{
         }
     }
 }
+[data-rsbs-root] {
+  z-index: 9999 !important;
+}

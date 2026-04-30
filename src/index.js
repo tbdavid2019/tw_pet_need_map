@@ -1,3 +1,4 @@
+import "react-spring-bottom-sheet/dist/style.css";
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PetAdoptionApp from './component/PetAdoptionApp';
